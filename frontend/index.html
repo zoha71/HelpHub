@@ -1,0 +1,789 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>HelpHub</title>
+
+    <link
+        rel="stylesheet"
+        href="style.css"
+    >
+
+</head>
+
+
+<body>
+
+
+    <!-- ========================================
+         NAVBAR
+    ========================================= -->
+
+    <nav class="navbar">
+
+        <div class="nav-container">
+
+            <div class="logo">
+                Help<span>Hub</span>
+            </div>
+
+
+            <div class="nav-buttons">
+
+                <!-- Logged out -->
+
+                <button
+                    type="button"
+                    id="loginButton"
+                    class="nav-button"
+                >
+                    Login
+                </button>
+
+
+                <button
+                    type="button"
+                    id="registerButton"
+                    class="nav-button"
+                >
+                    Create Account
+                </button>
+
+
+                <!-- Organization only -->
+
+                <button
+                    type="button"
+                    id="createOrganizationButton"
+                    class="nav-button organization-nav-button hidden"
+                >
+                    Create Organization
+                </button>
+
+
+                <!-- Logged in -->
+
+                <button
+                    type="button"
+                    id="logoutButton"
+                    class="nav-button logout-nav-button hidden"
+                >
+                    Logout
+                </button>
+
+            </div>
+
+        </div>
+
+    </nav>
+
+
+
+    <!-- ========================================
+         HERO
+    ========================================= -->
+
+    <section class="hero">
+
+        <div class="container hero-content">
+
+            <h1>
+                Make a difference
+                <br>
+                in your community.
+            </h1>
+
+
+            <p>
+                Discover volunteer opportunities,
+                connect with organizations,
+                and give your time to causes
+                that matter.
+            </p>
+
+
+            <button
+                type="button"
+                id="exploreButton"
+                class="primary-button"
+            >
+                Explore Opportunities
+            </button>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- ========================================
+         OPPORTUNITIES
+    ========================================= -->
+
+    <section
+        class="section opportunities-section"
+        id="opportunitiesSection"
+    >
+
+        <div class="container">
+
+
+            <div class="section-heading">
+
+                <span class="section-label">
+                    GET INVOLVED
+                </span>
+
+                <h2>
+                    Volunteer Opportunities
+                </h2>
+
+                <p>
+                    Find an opportunity that's right for you.
+                </p>
+
+            </div>
+
+
+
+            <!-- SEARCH -->
+
+            <div class="search-container">
+
+                <input
+                    type="text"
+                    id="searchInput"
+                    placeholder="Search by title, location, category..."
+                >
+
+
+                <button
+                    type="button"
+                    id="searchButton"
+                    class="primary-button search-button"
+                >
+                    Search
+                </button>
+
+
+                <button
+                    type="button"
+                    id="showAllButton"
+                    class="secondary-button show-all-button"
+                >
+                    Show All
+                </button>
+
+            </div>
+
+
+
+            <!-- OPPORTUNITY CARDS -->
+
+            <div
+                id="opportunities"
+                class="opportunities-grid"
+            ></div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- ========================================
+         OPPORTUNITY DETAILS
+    ========================================= -->
+
+    <section
+        id="details"
+        class="details-section"
+        style="display: none;"
+    ></section>
+
+
+
+    <!-- ========================================
+         VOLUNTEER AREA
+    ========================================= -->
+
+    <section
+        id="volunteerArea"
+        class="section volunteer-section hidden"
+    >
+
+        <div class="container">
+
+            <div class="volunteer-dashboard">
+
+
+                <!-- MY SIGNUPS -->
+
+                <div
+                    id="mySignups"
+                    class="dashboard hidden"
+                >
+
+                    <span class="dashboard-label">
+                        VOLUNTEER
+                    </span>
+
+                    <h2>
+                        My Signups
+                    </h2>
+
+                    <div id="signupList"></div>
+
+                </div>
+
+
+
+                <!-- MY HOURS -->
+
+                <div
+                    id="myHours"
+                    class="dashboard hidden"
+                >
+
+                    <span class="dashboard-label">
+                        VOLUNTEER
+                    </span>
+
+                    <h2>
+                        My Volunteer Hours
+                    </h2>
+
+                    <div id="hoursList"></div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- ========================================
+         LOGIN MODAL
+    ========================================= -->
+
+    <div
+        id="loginModal"
+        class="modal hidden"
+    >
+
+        <div class="modal-content">
+
+            <button
+                type="button"
+                class="modal-close"
+                id="closeLogin"
+            >
+                ×
+            </button>
+
+
+            <span class="modal-label">
+                WELCOME BACK
+            </span>
+
+            <h2>
+                Login
+            </h2>
+
+
+            <p class="modal-description">
+                Login to continue using HelpHub.
+            </p>
+
+
+            <div class="modal-form">
+
+
+                <div class="form-group">
+
+                    <label for="loginEmail">
+                        Email
+                    </label>
+
+                    <input
+                        type="email"
+                        id="loginEmail"
+                        placeholder="Enter your email"
+                    >
+
+                </div>
+
+
+
+                <div class="form-group">
+
+                    <label for="loginPassword">
+                        Password
+                    </label>
+
+                    <input
+                        type="password"
+                        id="loginPassword"
+                        placeholder="Enter your password"
+                    >
+
+                </div>
+
+
+            </div>
+
+
+            <button
+                type="button"
+                id="loginSubmitButton"
+                class="primary-button full-button"
+            >
+                Login
+            </button>
+
+
+            <div class="modal-switch">
+
+                Don't have an account?
+
+                <button
+                    type="button"
+                    id="switchToRegisterButton"
+                    class="text-button"
+                >
+                    Create Account
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- ========================================
+         REGISTER MODAL
+    ========================================= -->
+
+    <div
+        id="registerModal"
+        class="modal hidden"
+    >
+
+        <div class="modal-content">
+
+            <button
+                type="button"
+                class="modal-close"
+                id="closeRegister"
+            >
+                ×
+            </button>
+
+
+            <span class="modal-label">
+                JOIN HELPHUB
+            </span>
+
+            <h2>
+                Create Account
+            </h2>
+
+
+            <p class="modal-description">
+                Create your HelpHub account.
+            </p>
+
+
+            <div class="modal-form">
+
+
+                <div class="form-group">
+
+                    <label for="registerName">
+                        Name
+                    </label>
+
+                    <input
+                        type="text"
+                        id="registerName"
+                        placeholder="Enter your name"
+                    >
+
+                </div>
+
+
+
+                <div class="form-group">
+
+                    <label for="registerEmail">
+                        Email
+                    </label>
+
+                    <input
+                        type="email"
+                        id="registerEmail"
+                        placeholder="Enter your email"
+                    >
+
+                </div>
+
+
+
+                <div class="form-group">
+
+                    <label for="registerPassword">
+                        Password
+                    </label>
+
+                    <input
+                        type="password"
+                        id="registerPassword"
+                        placeholder="Create a password"
+                    >
+
+                </div>
+
+
+
+                <div class="form-group">
+
+                    <label for="registerPhone">
+                        Phone
+                    </label>
+
+                    <input
+                        type="text"
+                        id="registerPhone"
+                        placeholder="Enter your phone number"
+                    >
+
+                </div>
+
+
+
+                <div class="form-group">
+
+                    <label for="registerRole">
+                        Account Type
+                    </label>
+
+                    <select id="registerRole">
+
+                        <option value="volunteer">
+                            Volunteer
+                        </option>
+
+                        <option value="organization">
+                            Organization
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+            </div>
+
+
+            <button
+                type="button"
+                id="registerSubmitButton"
+                class="primary-button full-button"
+            >
+                Create Account
+            </button>
+
+
+            <div class="modal-switch">
+
+                Already have an account?
+
+                <button
+                    type="button"
+                    id="switchToLoginButton"
+                    class="text-button"
+                >
+                    Login
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- ========================================
+         CREATE ORGANIZATION MODAL
+    ========================================= -->
+
+    <div
+        id="organizationDashboard"
+        class="modal hidden"
+    >
+
+        <div class="modal-content create-event-modal">
+
+
+            <button
+                type="button"
+                class="modal-close"
+                id="closeOrganization"
+            >
+                ×
+            </button>
+
+
+            <span class="modal-label">
+                ORGANIZATION
+            </span>
+
+
+            <h2>
+                Create Volunteer Opportunity
+            </h2>
+
+
+            <p class="modal-description">
+                Add a new opportunity for volunteers to discover and join.
+            </p>
+
+
+
+            <form id="createOpportunityForm">
+
+
+                <!-- EVENT TITLE -->
+
+                <div class="form-group">
+
+                    <label for="eventTitle">
+                        Event Title
+                    </label>
+
+                    <input
+                        type="text"
+                        id="eventTitle"
+                        placeholder="e.g. Beach Cleanup Drive"
+                        required
+                    >
+
+                </div>
+
+
+
+                <!-- CATEGORY + VOLUNTEERS -->
+
+                <div class="form-row">
+
+
+                    <div class="form-group">
+
+                        <label for="eventCategory">
+                            Category
+                        </label>
+
+                        <input
+                            type="text"
+                            id="eventCategory"
+                            value="General"
+                            required
+                        >
+
+                    </div>
+
+
+
+                    <div class="form-group">
+
+                        <label for="eventVolunteers">
+                            Required Volunteers
+                        </label>
+
+                        <input
+                            type="number"
+                            id="eventVolunteers"
+                            min="1"
+                            placeholder="e.g. 20"
+                            required
+                        >
+
+                    </div>
+
+
+                </div>
+
+
+
+                <!-- DESCRIPTION -->
+
+                <div class="form-group">
+
+                    <label for="eventDescription">
+                        Description
+                    </label>
+
+                    <textarea
+                        id="eventDescription"
+                        placeholder="Describe the volunteer opportunity..."
+                        required
+                    ></textarea>
+
+                </div>
+
+
+
+                <!-- LOCATION -->
+
+                <div class="form-group">
+
+                    <label for="eventLocation">
+                        Location
+                    </label>
+
+                    <input
+                        type="text"
+                        id="eventLocation"
+                        placeholder="e.g. Juhu Beach, Mumbai"
+                        required
+                    >
+
+                </div>
+
+
+
+                <!-- DATE + START TIME -->
+
+                <div class="form-row">
+
+
+                    <div class="form-group">
+
+                        <label for="eventDate">
+                            Date
+                        </label>
+
+                        <input
+                            type="date"
+                            id="eventDate"
+                            required
+                        >
+
+                    </div>
+
+
+
+                    <div class="form-group">
+
+                        <label for="eventStartTime">
+                            Start Time
+                        </label>
+
+                        <input
+                            type="time"
+                            id="eventStartTime"
+                            required
+                        >
+
+                    </div>
+
+
+                </div>
+
+
+
+                <!-- END TIME -->
+
+                <div class="form-group">
+
+                    <label for="eventEndTime">
+                        End Time
+                    </label>
+
+                    <input
+                        type="time"
+                        id="eventEndTime"
+                        required
+                    >
+
+                </div>
+
+
+
+                <!-- ORGANIZATION LOGO -->
+
+                <div class="form-group">
+
+                    <label for="organizationLogo">
+                        Organization Logo
+                    </label>
+
+                    <input
+                        type="file"
+                        id="organizationLogo"
+                        accept="image/*"
+                    >
+
+                    <button
+                        type="button"
+                        id="uploadOrganizationLogoButton"
+                        class="secondary-button full-button"
+                    >
+                        Upload Logo
+                    </button>
+
+                    <p
+                        id="organizationLogoStatus"
+                        class="modal-description"
+                    ></p>
+
+                </div>
+
+
+
+                <!-- CREATE -->
+
+                <button
+                    type="submit"
+                    id="createOpportunityButton"
+                    class="primary-button full-button organization-create-button"
+                >
+                    Create Opportunity
+                </button>
+
+
+            </form>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- ========================================
+         FIREBASE / MAIN JAVASCRIPT
+    ========================================= -->
+
+    <script
+        type="module"
+        src="script.js"
+    ></script>
+
+
+</body>
+
+</html>
